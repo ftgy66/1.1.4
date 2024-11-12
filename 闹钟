@@ -1,0 +1,22 @@
+import time
+import winsound  # 仅适用于Windows系统
+
+def alarm(sound_file, duration):
+    # 播放声音
+    winsound.Beep(1000, duration)  # 1000Hz的声音，持续duration毫秒
+
+def set_alarm(alarm_time):
+    print(f"闹钟设置为：{alarm_time}")
+    while True:
+        # 获取当前时间
+        current_time = time.strftime("%H:%M")
+        print(f"当前时间：{current_time}", end="\r")  # 不换行更新当前时间
+        if current_time == alarm_time:
+            print("\n时间到了！闹钟响起！")
+            alarm(1000, 2000)  # 播放声音，持续2秒
+            break
+        time.sleep(1)  # 每秒检查一次
+
+if __name__ == "__main__":
+    alarm_time = input("请输入闹钟时间（格式：HH:MM）：")
+    set_alarm(alarm_time)
